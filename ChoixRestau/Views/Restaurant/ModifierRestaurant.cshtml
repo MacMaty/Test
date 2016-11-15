@@ -1,0 +1,32 @@
+﻿@model ChoixRestau.Models.Resto
+@{
+    ViewBag.Title = "ModifierRestaurant";
+}
+<head>
+    <title></title>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</head>
+<link type="text/css" href="../../Content/Site.css" rel="stylesheet" />
+<h2>ModifierRestaurant</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Modifier un restaurant</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Nom)
+            @Html.TextBoxFor(model => model.Nom)
+            @Html.ValidationMessageFor(model => model.Nom)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Telephone)
+            @Html.TextBoxFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        <br />
+        <input type="submit" value="Modifier" />
+    </fieldset>
+}

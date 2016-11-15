@@ -1,0 +1,52 @@
+﻿@model ChoixRestau.Models.Resto
+@{
+    ViewBag.Title = "CreerRestaurant";
+}
+<head>
+    <title></title>
+   
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script type="text/javascript">
+        jQuery.validator.addMethod("verifcontact",
+        function (value, element, params) {
+            var tel = $("#" + params.parametre1).val();
+            var email = $("#" + params.parametre2).val();
+            return tel != '' || email != '';
+        });
+
+        jQuery.validator.unobtrusive.adapters.add
+            ("verifcontact", ["parametre1", "parametre2"], function (options) {
+                options.rules["verifcontact"] = options.params;
+                options.messages["verifcontact"] = options.message;
+            });
+
+    </script>
+</head>
+<h2>CreerRestaurant</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Ajouter un restaurant</legend>
+
+        <div>
+            @Html.LabelFor(model => model.Nom)
+            @Html.TextBoxFor(model => model.Nom)
+            @Html.ValidationMessageFor(model => model.Nom)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Telephone)
+            @Html.TextBoxFor(model => model.Telephone)
+            @Html.ValidationMessageFor(model => model.Telephone)
+        </div>
+        <div>
+            @Html.LabelFor(model => model.Email)
+            @Html.TextBoxFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+        <br />
+        <input type="submit" value="Ajouter" />
+    </fieldset>
+}
